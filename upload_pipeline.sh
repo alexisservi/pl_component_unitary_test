@@ -17,7 +17,7 @@ python -m venv env
 source env/bin/activate
 cd ..
 #pip install protobuf==3.19.6
-pip install urllib3
+pip install urllib3==1.26.15
 pip install google-api-core
 #pip install google-cloud-aiplatform  --upgrade
 #pip install --pre kfp --upgrade
