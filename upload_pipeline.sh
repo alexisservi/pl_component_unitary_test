@@ -17,7 +17,7 @@ python -m venv env
 source env/bin/activate
 cd ..
 #pip install protobuf==3.19.6
-pip install google-cloud-aiplatform  --upgrade
+#pip install google-cloud-aiplatform  --upgrade
 #pip install --pre kfp --upgrade
 #pip install google-cloud-aiplatform
 pip install --pre kfp # Antes funcionaba
