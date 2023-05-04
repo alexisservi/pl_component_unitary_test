@@ -86,10 +86,11 @@ def component_test():
   component_output = test_component_instance.component_function_test()
 
   # Se verifica que devuelve un modelo
+  print("type(component_output): {}".format(type(component_output)))
   
   # En este caso la salida es un modelo, entonces se evalua el R squared
   r_squared = component_output.score(X_train, y_train)
-  print("type(component_output): {}".format(type(component_output)))
+
   print("r_squared: {}".format(r_squared))
 
   # Si el R squared es mayor a un umbral se aprueba el componente
@@ -98,12 +99,13 @@ def component_test():
   else:
     component_ok = False
 
+  print("component_ok: {}".format(component_ok))
   return component_ok
 
 #---------------------------------------------------------------------------------------------------
 read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
 custom_training_job_comp = create_custom_training_job_from_component(
-    read_lines_comp, # lines_to_write_1=lines_to_write_1,), #file_writer,
+    component_test, # lines_to_write_1=lines_to_write_1,), #file_writer,
     display_name = 'Custom Training Job -> with custom machine and GPU',
     machine_type = 'n1-standard-4', 
     accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
