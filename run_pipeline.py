@@ -2,12 +2,13 @@ import google.cloud.aiplatform as aip
 
 
 
-
+PROJECT_ID = "almacafe-ml-poc"
+PROJECT_REGION = "us-central1"
 PIPELINE_ROOT_PATH = "gs://ml-auto-pipelines-bucket/pipeline-runs"
 # Before initializing, make sure to set the GOOGLE_APPLICATION_CREDENTIALS
 # environment variable to the file path of your service account.
 aip.init(
-    project=project_id,
+    project=PROJECT_ID,
     location=PROJECT_REGION,
 )
 
