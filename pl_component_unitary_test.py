@@ -112,7 +112,12 @@ custom_training_job_comp = create_custom_training_job_from_component(
     display_name = 'Component Unitary Test -',
     machine_type = 'n1-standard-4', 
     #accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
-    accelerator_count='1'
+    #accelerator_count='1'
+    worker_pool_specs = {"containerSpec": {
+                    #"args": TRAINER_ARGS,
+                    #"env": [{"name": "AIP_MODEL_DIR", "value": WORKING_DIR}],
+                    "imageUri": "us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-0:latest",
+                }} 
 )
 
 print(repr(read_lines_comp))
