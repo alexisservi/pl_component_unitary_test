@@ -30,7 +30,7 @@ pip install --pre  google-cloud-pipeline-components
 
 #----------------------------------------------
 # Create and compile pipeline
-python3 pl_read_lines.py
+python3 pl_component_unitary_test.py
 
 #----------------------------------------------
 # Upload template
