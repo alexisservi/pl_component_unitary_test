@@ -17,9 +17,9 @@ job = aip.PipelineJob(
     display_name="unitary-test-v1",
     template_path="component_unitary_test_pipeline.json",
     pipeline_root=PIPELINE_ROOT_PATH,
-    project_id = PROJECT_ID,
+    project = PROJECT_ID,
     parameter_values={
-        'project_id': PROJECT_ID
+        'project': PROJECT_ID
     }
 )
 
