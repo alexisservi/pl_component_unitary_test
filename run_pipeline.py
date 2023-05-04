@@ -1,7 +1,17 @@
 import google.cloud.aiplatform as aip
 
+from kfp.registry import RegistryClient
+PROJECT_ID = "almacafe-ml-poc"
+client = RegistryClient(host="https://us-central1-kfp.pkg.dev/{}/ml-automation-kfp-repo".format(PROJECT_ID))
 
 
+#V1 Compiler -> it works...!
+templateName, versionName = client.upload_pipeline( 
+  file_name="component_unitary_test_pipeline.yaml",
+  tags=["v1", "latest"],
+  extra_headers={"description":"Component unitary test"})
+
+"""
 PROJECT_ID = "almacafe-ml-poc"
 PROJECT_REGION = "us-central1"
 PIPELINE_ROOT_PATH = "gs://ml-auto-pipelines-bucket/pipeline-runs"
@@ -24,3 +34,4 @@ job = aip.PipelineJob(
 )
 
 job.submit()
+"""

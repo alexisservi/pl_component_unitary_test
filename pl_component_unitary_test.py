@@ -142,22 +142,22 @@ def component_unitary_test_pipeline():
     
 #------------------------------------------
 # Compile pipeline
-"""
+
 # V1 Compiler -> it works... 
 compiler.Compiler().compile(
     pipeline_func=component_unitary_test_pipeline,
     package_path='component_unitary_test_pipeline.yaml', 
     #type_check=False
     )
-"""
 
+"""
 # V2 Compiler -> 
 compiler.Compiler().compile(
     pipeline_func=component_unitary_test_pipeline,
     package_path='component_unitary_test_pipeline.json', 
     #type_check=False
     )
-
+"""
 print("PIPELINE COMPILED")
 print("List directory files")
 print(os.listdir())
