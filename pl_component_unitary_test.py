@@ -1,8 +1,9 @@
 # CREARTE AND COMPILE A PIPELINE
 import os
-import kfp
+#import kfp
 from kfp import dsl
 from kfp import compiler
+form kfp import components
 #import kfp.components as comp
 from kfp.v2.dsl import (
     component,
@@ -47,7 +48,7 @@ def file_writer(lines_to_write_1: int,
 
 
 #---------------------------------------------------------------------------------------------------
-read_lines_comp = kfp.components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
+read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
 custom_training_job_comp = create_custom_training_job_from_component(
     read_lines_comp, # lines_to_write_1=lines_to_write_1,), #file_writer,
     display_name = 'Custom Training Job -> with custom machine and GPU',
