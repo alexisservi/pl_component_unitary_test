@@ -48,7 +48,7 @@ def file_writer(lines_to_write_1: int,
 
 
 #---------------------------------------------------------------------------------------------------
-@dsl.component() 
+@dsl.component(packages_to_install= ["numpy==1.21.6"]) 
 def component_test():
   import numpy as np
   #------------------------------------------------------------
@@ -106,22 +106,7 @@ def component_test():
   return component_ok
 
 #---------------------------------------------------------------------------------------------------
-read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
-custom_training_job_comp = create_custom_training_job_from_component(
-    component_test, # lines_to_write_1=lines_to_write_1,), #file_writer,
-    display_name = 'Component Unitary Test -',
-    machine_type = 'n1-standard-4', 
-    #accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
-    #accelerator_count='1'
-    worker_pool_specs = {"containerSpec": {
-                    #"args": TRAINER_ARGS,
-                    #"env": [{"name": "AIP_MODEL_DIR", "value": WORKING_DIR}],
-                    "imageUri": "us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-0:latest",
-                }} 
-)
 
-print(repr(read_lines_comp))
-print(repr(custom_training_job_comp))
 #---------------------------------------------------------------------------------------------------
 @dsl.pipeline(name='component_unitary_test_pipeline-v1', description='A pipeline components unitary test')
 def component_unitary_test_pipeline():
@@ -129,20 +114,13 @@ def component_unitary_test_pipeline():
     
     file_writer_task = file_writer(lines_to_write_1=7)
 
-    
     #--------------------------
     # START: Create a unitary test for component
-
-
-    custom_training_job_task = custom_training_job_comp(
-        project='almacafe-ml-poc',
-        location='us-central1',
-    )
+    component_test_task = component_test()
     # END: Create a unitary test for component
     #--------------------------
     
-    
-    
+
     
 #------------------------------------------
 # Compile pipeline
