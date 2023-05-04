@@ -3,7 +3,7 @@ import os
 #import kfp
 from kfp import dsl
 from kfp import compiler
-form kfp import components
+from kfp import components
 #import kfp.components as comp
 from kfp.v2.dsl import (
     component,
