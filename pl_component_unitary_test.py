@@ -14,7 +14,8 @@ from kfp.v2.dsl import (
     InputPath, OutputPath, )
 from google_cloud_pipeline_components.v1.custom_job import create_custom_training_job_from_component
 from typing import NamedTuple
-
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 #URL_READ_LINES_COMP = 'gs://ml-auto-pipelines-bucket/components-yamls/line-reader-writer/kubeflow_component_spec.yaml'
 URL_READ_LINES_COMP = "https://storage.googleapis.com/ml-auto-pipelines-bucket/components-yamls/line-reader-writer/kubeflow_component_spec.yaml"

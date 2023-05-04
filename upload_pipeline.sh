@@ -17,6 +17,7 @@ python -m venv env
 source env/bin/activate
 cd ..
 #pip install protobuf==3.19.6
+pip install urllib3
 pip install google-api-core
 pip install google-cloud-aiplatform  --upgrade
 pip install --pre kfp --upgrade
@@ -25,6 +26,9 @@ pip install --pre kfp --upgrade
 
 #pip install --upgrade google-cloud-pipeline-components
 pip install --pre  google-cloud-pipeline-components
+
+pip install numpy
+pip install scikit-learn
 
 # Configure GCP permisions
 #https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template#configuring_permissions
