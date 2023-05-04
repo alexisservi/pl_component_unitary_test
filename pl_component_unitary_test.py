@@ -48,9 +48,10 @@ def file_writer(lines_to_write_1: int,
 
 
 #---------------------------------------------------------------------------------------------------
-@dsl.component(packages_to_install= ["numpy==1.21.6"]) 
+@dsl.component(packages_to_install= ["numpy==1.21.6", "scikit-learn"]) 
 def component_test():
   import numpy as np
+  from sklearn.linear_model import LinearRegression
   #------------------------------------------------------------
   # componentWrapper class definition
   # En esta clase se envuelve el componente a probar
