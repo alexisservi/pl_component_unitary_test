@@ -20,7 +20,7 @@ cd ..
 pip install google-cloud-aiplatform  --upgrade
 pip install --pre kfp --upgrade
 #pip install google-cloud-aiplatform
-pip install --pre kfp # Antes funcionaba
+#pip install --pre kfp # Antes funcionaba
 
 #pip install --upgrade google-cloud-pipeline-components
 pip install --pre  google-cloud-pipeline-components
