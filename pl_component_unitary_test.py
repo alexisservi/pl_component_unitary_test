@@ -138,15 +138,6 @@ def component_unitary_test_pipeline():
     
     
     
-    
-    #--------------------------
-    # START: Condition task excecution
-    with dsl.Condition(file_reader_task.outputs["publish_model_cmd"] == "Publish model"):
-        conditional_task = print_text(text=file_reader_task.outputs["publish_model_cmd"])
-    # END: Condition task excecution
-    #--------------------------
-    
-    
 #------------------------------------------
 # Compile pipeline
 # V1 Compiler -> it works... 
