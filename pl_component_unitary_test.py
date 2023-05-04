@@ -108,7 +108,7 @@ def component_test():
 read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
 custom_training_job_comp = create_custom_training_job_from_component(
     component_test, # lines_to_write_1=lines_to_write_1,), #file_writer,
-    display_name = 'Component Test -',
+    display_name = 'Component Unitary Test -',
     machine_type = 'n1-standard-4', 
     #accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
     accelerator_count='1'
@@ -123,20 +123,18 @@ def component_unitary_test_pipeline():
     
     file_writer_task = file_writer(lines_to_write_1=7)
 
-    """
+    
     #--------------------------
-    # START: Create a custom training job from component
+    # START: Create a unitary test for component
 
 
     custom_training_job_task = custom_training_job_comp(
-        input_1=file_writer_task.outputs["out_file_1"], # 
-        parameter_1=file_writer_task.outputs["lines_to_read"],
         project='almacafe-ml-poc',
         location='us-central1',
     )
-    # END: Create a custom training job from component
+    # END: Create a unitary test for component
     #--------------------------
-    """
+    
     
     
     
