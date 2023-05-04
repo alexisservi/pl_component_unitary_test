@@ -61,7 +61,7 @@ def component_test() -> str:
     
     def component_function_test(self):
       #------------------------------------------------------------
-      # Aqui se pone la funcion del componente
+      # Aqui se pone la funcion del componente 
       def train_model(X_train, y_train):
           model = LinearRegression()
           model.fit(X_train, y_train)
