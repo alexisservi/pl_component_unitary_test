@@ -2,7 +2,8 @@
 import os
 #import kfp
 from kfp.v2 import dsl
-from kfp import compiler
+#from kfp import compiler
+from kfp.v2 import compiler
 from kfp import components
 #import kfp.components as comp
 from kfp.v2.dsl import (
@@ -106,9 +107,9 @@ def component_test():
 read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
 custom_training_job_comp = create_custom_training_job_from_component(
     component_test, # lines_to_write_1=lines_to_write_1,), #file_writer,
-    display_name = 'Custom Training Job -> with custom machine and GPU',
+    display_name = 'Component Test -',
     machine_type = 'n1-standard-4', 
-    accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
+    #accelerator_type='NVIDIA_TESLA_T4', # https://cloud.google.com/vertex-ai/docs/training/configure-compute#specifying_gpus
     accelerator_count='1'
 )
 
@@ -140,7 +141,16 @@ def component_unitary_test_pipeline():
     
 #------------------------------------------
 # Compile pipeline
+"""
 # V1 Compiler -> it works... 
+compiler.Compiler().compile(
+    pipeline_func=component_unitary_test_pipeline,
+    package_path='component_unitary_test_pipeline.yaml', 
+    #type_check=False
+    )
+"""
+
+# V2 Compiler -> 
 compiler.Compiler().compile(
     pipeline_func=component_unitary_test_pipeline,
     package_path='component_unitary_test_pipeline.yaml', 
