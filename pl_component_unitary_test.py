@@ -153,7 +153,7 @@ compiler.Compiler().compile(
 # V2 Compiler -> 
 compiler.Compiler().compile(
     pipeline_func=component_unitary_test_pipeline,
-    package_path='component_unitary_test_pipeline.yaml', 
+    package_path='component_unitary_test_pipeline.json', 
     #type_check=False
     )
 
