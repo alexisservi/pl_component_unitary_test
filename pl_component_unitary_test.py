@@ -45,7 +45,59 @@ def file_writer(lines_to_write_1: int,
 
 
 #---------------------------------------------------------------------------------------------------
+@dsl.component() 
+def component_test():
+  #------------------------------------------------------------
+  # componentWrapper class definition
+  # En esta clase se envuelve el componente a probar
+  class componentWrapper():
+    def __init__(self, component_inputs):
+      self.component_inputs = component_inputs
+    
+    def component_function_test(self):
+      #------------------------------------------------------------
+      # Aqui se pone la funcion del componente
+      def train_model(X_train, y_train):
+          model = LinearRegression()
+          model.fit(X_train, y_train)
+          return model
+      
+      #------------------------------------------------------------
+      # Aqui se llama a la funcion del component con las entradas apropiadas
+      X_train = self.component_inputs["X_train"]
+      y_train = self.component_inputs["y_train"]
+      component_output = train_model(X_train, y_train)
 
+      # Se retorna la salida del componente
+      return component_output
+
+  #------------------------------------------------------------
+  # Codigo que hace prueba unitaria al componente
+  # Se crean unas entradas apropiadas
+  X_train = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+  y_train = np.array([10, 23, 34])
+  component_inputs = {"X_train": X_train, "y_train": y_train}
+
+  # Se crea la instancia de la "envoltura" del componente
+  test_component_instance = componentWrapper(component_inputs)
+
+  # Se llama a la funcion que prueba el componente
+  component_output = test_component_instance.component_function_test()
+
+  # Se verifica que devuelve un modelo
+  
+  # En este caso la salida es un modelo, entonces se evalua el R squared
+  r_squared = component_output.score(X_train, y_train)
+  print("type(component_output): {}".format(type(component_output)))
+  print("r_squared: {}".format(r_squared))
+
+  # Si el R squared es mayor a un umbral se aprueba el componente
+  if r_squared > 0.7:
+    component_ok = True
+  else:
+    component_ok = False
+
+  return component_ok
 
 #---------------------------------------------------------------------------------------------------
 read_lines_comp = components.load_component_from_url(url=URL_READ_LINES_COMP)  # Passing pipeline parameter as argument to consumer op
@@ -69,7 +121,7 @@ def component_unitary_test_pipeline():
     """
     #--------------------------
     # START: Create a custom training job from component
-    file_writer_task = file_writer(lines_to_write_1=lines_to_write_1)
+
 
     custom_training_job_task = custom_training_job_comp(
         input_1=file_writer_task.outputs["out_file_1"], # 
