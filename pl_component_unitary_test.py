@@ -50,6 +50,7 @@ def file_writer(lines_to_write_1: int,
 #---------------------------------------------------------------------------------------------------
 @dsl.component() 
 def component_test():
+  import numpy as np
   #------------------------------------------------------------
   # componentWrapper class definition
   # En esta clase se envuelve el componente a probar
