@@ -1,7 +1,7 @@
 # CREARTE AND COMPILE A PIPELINE
 import os
 #import kfp
-from kfp import dsl
+from kfp.v2 import dsl
 from kfp import compiler
 from kfp import components
 #import kfp.components as comp
