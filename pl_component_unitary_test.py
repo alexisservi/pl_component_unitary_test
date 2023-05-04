@@ -49,7 +49,7 @@ def file_writer(lines_to_write_1: int,
 
 #---------------------------------------------------------------------------------------------------
 @dsl.component(packages_to_install= ["numpy==1.21.6", "scikit-learn"]) 
-def component_test():
+def component_test() -> str:
   import numpy as np
   from sklearn.linear_model import LinearRegression
   #------------------------------------------------------------
@@ -104,7 +104,7 @@ def component_test():
     component_ok = False
 
   print("component_ok: {}".format(component_ok))
-  return component_ok
+  return str(component_ok)
 
 #---------------------------------------------------------------------------------------------------
 
